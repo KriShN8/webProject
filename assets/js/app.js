@@ -1,3 +1,9 @@
-// console.log(alert("hiiiiiiiii"))
-var input = document.getElementById ("inputGroupFile01");
-input.placeholder = "Upload";
+
+document.getElementById('enterButton').addEventListener('click', function() {
+         const dropdown = document.getElementById('analysisDropdown');
+        const selectedValue = dropdown.value;
+
+            // Set the selected value in the input field
+            document.getElementById('selectedOption').value = selectedValue;
+        });
+    
