@@ -4,66 +4,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Portfolio App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f5f5f5;
+        }
+
+        .screen {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            height: 580px;
+            margin: 20px;
+            background-color: white;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .chart {
+            height: 100px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .screen {
+                height: 90vh;
+                padding: 10px;
+            }
+
+            h2,
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            button {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            input {
+                padding: 8px;
+            }
+
+            th,
+            td {
+                padding: 5px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .screen {
+                height: 100vh;
+                margin: 10px 0;
+            }
+
+            h2,
+            h3 {
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 6px;
+                font-size: 0.8rem;
+            }
+
+            input {
+                padding: 6px;
+            }
+
+            th,
+            td {
+                padding: 4px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="flex justify-Center p-30">
-        <div>
-            <img src="./assets/images/WebSiteImg_2019-11-28.png" alt="">
-        </div>
+    <!-- Screen 1: Welcome -->
+    <div class="screen active" id="screen1">
+        <h2>What do we do?<br>In 3 points</h2>
+        <button onclick="showScreen(2)">Get Started -></button>
     </div>
-    <div class="flex justify-Center my-30">
-        <h3>
-            CREDIT DEPARTMENT: BUSINESS LOAN
-        </h3>
+
+    <!-- Screen 2: Enter Phone Number -->
+    <div class="screen" id="screen2">
+        <h2>Enter phone number<br><small>linked to your PAN</small></h2>
+        <input type="tel" placeholder="Enter mobile number +91">
+        <button onclick="showScreen(1)">&lt; Back</button>
+        <button onclick="showScreen(3)">Proceed ></button>
     </div>
-    <div class="flex justify-Center my-30">
-        <div>
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" id="inputGroupFile01">
-            </div>
-        </div>
 
-      
+    <!-- Screen 3: Enter PAN -->
+    <div class="screen" id="screen3">
+        <h2>Enter PAN number<br><small>linked to your investments</small></h2>
+        <input type="text" placeholder="Enter PAN">
+        <button onclick="showScreen(2)">&lt; Back</button>
+        <button onclick="showScreen(4)">Proceed ></button>
     </div>
-    <div class="flex justify-Center ">
-        <div class="flex flex-d-v justify-Center ">
-            <div>
-                <h4 class="mb-4">Select an Analysis Option</h4>
-            </div>
-            <div class="flex">
-                <div class="form-group">
-                    <label class="my-1" for="analysisDropdown">Choose an option:</label>
-                    <select class="form-control" id="analysisDropdown">
-                        <option value="">--Select an option--</option>
-                        <option value="Financial Position Analysis">Financial Position Analysis</option>
-                        <option value="Balance Sheet Analysis">Balance Sheet Analysis</option>
-                        <option value="Key Ratio Analysis">Key Ratio Analysis</option>
-                        <option value="Asset Analysis">Asset Analysis</option>
-                        <option value="Liability Analysis">Liability Analysis</option>
-                        <option value="Working Capital Analysis">Working Capital Analysis</option>
-                        <option value="Appraisal Note">Appraisal Note</option>
-                    </select>
-                </div>
-                <div class="mx-2 mt-30">
-                    <button class="btn btn-primary" id="enterButton">Enter</button>
 
-                </div>
-            </div>
-            
-
-        </div>
-
+    <!-- Screen 4: Verify OTP -->
+    <div class="screen" id="screen4">
+        <h2>Verify OTP<br><small>received from MF central</small></h2>
+        <input type="text" placeholder="Enter OTP">
+        <button onclick="showScreen(3)">&lt; Back</button>
+        <button onclick="showScreen(5)">Proceed ></button>
     </div>
-    <script src="./assets/js/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Screen 5: Transitory Page -->
+    <div class="screen" id="screen5">
+        <h2>Transitory Page</h2>
+        <p>OTP Verified,<br>Fetching Portfolio,<br>Fetch complete,<br>Portfolio being reviewed,<br>Review complete</p>
+        <button onclick="showScreen(4)">&lt; Back</button>
+        <button onclick="showScreen(6)">Next ></button>
+    </div>
+
+    <!-- Screen 6: Portfolio Summary -->
+    <div class="screen" id="screen6">
+        <h2>Portfolio Summary</h2>
+        <p>Current value:<br>Investment:<br>Returns: ...</p>
+        <table>
+            <tr>
+                <th>Mutual Fund</th>
+                <th>Investment</th>
+                <th>Current Value</th>
+                <th>Returns</th>
+            </tr>
+            <tr>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+        </table>
+        <button onclick="showScreen(5)">&lt; Back</button>
+        <button onclick="showScreen(7)">Check Portfolio review ></button>
+    </div>
+
+    <!-- Screen 7: Portfolio Review -->
+    <div class="screen" id="screen7">
+        <h2>Your Portfolio Review</h2>
+        <h3>Portfolio vs. Benchmark XIRR</h3>
+        <div class="chart">[Chart Placeholder]</div>
+        <button onclick="showScreen(6)">&lt; Back</button>
+        <button onclick="showScreen(8)">Detailed ></button>
+    </div>
+
+    <!-- Screen 8: Portfolio Table Review -->
+    <div class="screen" id="screen8">
+        <h2>Your Portfolio Review</h2>
+        <table>
+            <tr>
+                <th>Mutual Fund</th>
+                <th>XIRR</th>
+                <th>Benchmark</th>
+                <th>XIRR</th>
+            </tr>
+            <tr>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+        </table>
+        <button onclick="showScreen(7)">&lt; Back</button>
+        <button onclick="showScreen(9)">Got It!</button>
+    </div>
+
+    <!-- Screen 9: Return to Portfolio Summary -->
+    <div class="screen" id="screen9">
+        <h2>Portfolio Summary</h2>
+        <p>Current value:<br>Investment:<br>Returns: ...</p>
+        <table>
+            <tr>
+                <th>Mutual Fund</th>
+                <th>Investment</th>
+                <th>Current Value</th>
+                <th>Returns</th>
+            </tr>
+            <tr>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+        </table>
+        <button onclick="showScreen(8)">&lt; Back</button>
+        <button onclick="showScreen(6)">Check Portfolio review ></button>
+    </div>
+
+    <script>
+        function showScreen(screenNumber) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => screen.classList.remove('active'));
+            document.getElementById(`screen${screenNumber}`).classList.add('active');
+        }
+    </script>
 </body>
 
 </html>
